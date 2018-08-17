@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #counter {
+                font-size: 3em;
+                font-weight: bold;
+            }
+        </style>
+        <script>
+            var counter = 0;
+            var count_board;
+
+            function init(){
+                count_board = document.getElementById('counter');
+                produce = document.getElementById('produce');
+                produce.addEventListener('click', count_up);
+            }
+
+            function count_up(e){
+                counter++;
+                count_board.textContent = counter;
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <span id="counter">0</span>個
+        <button id="produce">Produce</button>
+    </body>
+</html>
