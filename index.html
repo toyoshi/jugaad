@@ -1,74 +1,109 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            #counter {
-                font-size: 3em;
-                font-weight: bold;
-            }
 
-            #counter {
-                font-size: 2em;
-                font-weight: bold;
-            }
-        </style>
-        <script>
-            var counter = 0;
-            var man = 0;
-            var man_cost = 10;
-            var count_board;
-            var man_board;
+<head>
+    <link rel="stylesheet" href="./bulma.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #counter {
+            font-size: 3em;
+            font-weight: bold;
+        }
 
-            function init(){
-                count_board = document.getElementById('counter');
-                man_board = document.getElementById('man');
-                man_cost_board = document.getElementById('man_cost');
-                
-                produce = document.getElementById('produce');
-                born = document.getElementById('born');
-                produce.addEventListener('click', count_up);
-                born.addEventListener('click', man_up);
+        #counter {
+            font-size: 2em;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        var counter = 0;
+        var man = 0;
+        var man_cost = 10;
+        var count_board;
+        var man_board;
 
-                setInterval(enter_frame, 1050);
-            }
+        function init() {
+            count_board = document.getElementById('counter');
+            man_board = document.getElementById('man');
+            man_cost_board = document.getElementById('man_cost');
 
-            function count_up(e){
-                counter++;
+            produce = document.getElementById('produce');
+            born = document.getElementById('born');
+            produce.addEventListener('click', count_up);
+            born.addEventListener('click', man_up);
+
+            setInterval(enter_frame, 1050);
+        }
+
+        function count_up(e) {
+            counter++;
+            count_board.textContent = counter;
+        }
+
+        function man_up(e) {
+            //コストを払う
+            if (counter >= man_cost) {
+                counter -= man_cost;
                 count_board.textContent = counter;
-            }
+                //コストをあげる
+                man_cost = Math.floor(man_cost * 1.3);
+                man_cost_board.textContent = man_cost;
 
-            function man_up(e){
-                //コストを払う
-                if(counter >= man_cost){
-                    counter -= man_cost;
-                    count_board.textContent = counter;
-                    //コストをあげる
-                    man_cost = Math.floor(man_cost * 1.3);
-                    man_cost_board.textContent = man_cost;
-
-                    //カウントを増やす
-                    man++;
-                    man_board.textContent = man;
-                }else{
-                    return;
-                }
+                //カウントを増やす
+                man++;
+                man_board.textContent = man;
+            } else {
+                return;
             }
+        }
 
-            function enter_frame(){
-                counter += man;
-                count_board.textContent = counter;
+        function enter_frame() {
+            counter += man;
+            count_board.textContent = counter;
+
+            //ボタンの監視
+            if (counter >= man_cost) {
+                born.disabled = false;
+            } else {
+                born.disabled = true;
             }
-        </script>
-    </head>
-    <body onload="init()">
-        <div>
-            <span id="counter">0</span>個
-            <button id="produce">Produce</button>
+        }
+    </script>
+</head>
+
+<body onload="init()">
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+
+                <div class="column">
+                    <article class="message">
+                        <div class="message-header">
+                            資源
+                        </div>
+                        <div class="message-body">
+                            <span id="counter">0</span>個
+                            <button id="produce" class="button is-medium">生産</button>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="column">
+                    <article class="message">
+                        <div class="message-header">
+                            労働者
+                        </div>
+                        <div class="message-body">
+                            <span id="man">0</span>人 &nbsp; 必要資源:
+                            <span id="man_cost">10</span>
+                            &nbsp;
+                            <button id="born" class="button" disabled>人を作る</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </div>
-        <div>
-            <span id="man">0</span>人
-            <button id="born">Born</button>
-            コスト:<span id="man_cost">10</span>
-        </div>
-    </body>
+    </section>
+</body>
+
 </html>
