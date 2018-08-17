@@ -6,25 +6,69 @@
                 font-size: 3em;
                 font-weight: bold;
             }
+
+            #counter {
+                font-size: 2em;
+                font-weight: bold;
+            }
         </style>
         <script>
             var counter = 0;
+            var man = 0;
+            var man_cost = 10;
             var count_board;
+            var man_board;
 
             function init(){
                 count_board = document.getElementById('counter');
+                man_board = document.getElementById('man');
+                man_cost_board = document.getElementById('man_cost');
+                
                 produce = document.getElementById('produce');
+                born = document.getElementById('born');
                 produce.addEventListener('click', count_up);
+                born.addEventListener('click', man_up);
+
+                setInterval(enter_frame, 1050);
             }
 
             function count_up(e){
                 counter++;
                 count_board.textContent = counter;
             }
+
+            function man_up(e){
+                //コストを払う
+                if(counter >= man_cost){
+                    counter -= man_cost;
+                    count_board.textContent = counter;
+                    //コストをあげる
+                    man_cost = Math.floor(man_cost * 1.3);
+                    man_cost_board.textContent = man_cost;
+
+                    //カウントを増やす
+                    man++;
+                    man_board.textContent = man;
+                }else{
+                    return;
+                }
+            }
+
+            function enter_frame(){
+                counter += man;
+                count_board.textContent = counter;
+            }
         </script>
     </head>
     <body onload="init()">
-        <span id="counter">0</span>個
-        <button id="produce">Produce</button>
+        <div>
+            <span id="counter">0</span>個
+            <button id="produce">Produce</button>
+        </div>
+        <div>
+            <span id="man">0</span>人
+            <button id="born">Born</button>
+            コスト:<span id="man_cost">10</span>
+        </div>
     </body>
 </html>
