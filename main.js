@@ -94,7 +94,7 @@ var app = new Vue({
         },
         createSnsUrl : function(){
             var url = encodeURIComponent(location.href);
-            var txt = encodeURIComponent(this.counter + '個の寿司を握りました。🍣クリッカー @toyoshi');
+            var txt = encodeURIComponent(this.counter + '貫の寿司を握りました。🍣クリッカー @toyoshi');
             return 'https://twitter.com/intent/tweet?text=' + txt + '&url=' + url;
         }
     }
