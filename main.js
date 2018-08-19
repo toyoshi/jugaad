@@ -63,6 +63,7 @@ var app = new Vue({
     el: '#app',
     data: {
         counter: 0,
+        twUrl: '',
         unlocked_items: [
             //{id: 0, name: 'デバッグ', cost: 1, performance: [1,1000] },
             {id: 1, name: '見習い職人', cost: 15, performance: [1,10000] },
@@ -90,6 +91,11 @@ var app = new Vue({
         },
         changeTotalQty: function(qty) {
             this.counter = this.counter + qty;
+        },
+        createSnsUrl : function(){
+            var url = encodeURIComponent(location.href);
+            var txt = encodeURIComponent(this.counter + '個の寿司を握りました。🍣クリッカー @toyoshi');
+            return 'https://twitter.com/intent/tweet?text=' + txt + '&url=' + url;
         }
     }
 });

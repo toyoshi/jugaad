@@ -35,20 +35,27 @@
 
                     <div>
                         現在の数をシェア
-                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" style="line-height: 0px" class="twitter-share-button" v-bind:data-text="counter + '個の寿司を握りました。'"
-                            data-via="toyoshi" data-show-count="false">Tweet</a>
+
+                        <a class="button is-info is-small" v-bind:href="createSnsUrl()">
+                            <span class="icon">
+                                <i class="fab fa-twitter"></i>
+                            </span>
+                            <span>Twitter</span>
+                        </a>
+
                     </div>
                 </div>
 
                 <div class="column">
-                    <item-component v-for="item in unlocked_items" :key="item.id" v-bind:id="item.id" v-bind:name="item.name" v-bind:init_cost="item.cost" v-bind:performance="item.performance"
-                        v-bind:counter="counter" v-on:change-total-qty="changeTotalQty" v-on:unlock-next-building="unLockNetxBuilding"></item-component>
+                    <item-component v-for="item in unlocked_items" :key="item.id" v-bind:id="item.id" v-bind:name="item.name" v-bind:init_cost="item.cost"
+                        v-bind:performance="item.performance" v-bind:counter="counter" v-on:change-total-qty="changeTotalQty"
+                        v-on:unlock-next-building="unLockNetxBuilding"></item-component>
                 </div>
             </div>
         </div>
     </section>
 
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="./main.js"></script>
 </body>
