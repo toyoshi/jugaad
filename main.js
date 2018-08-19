@@ -7,6 +7,9 @@ var app = new Vue({
         robot: 0,
         robot_cost: 30,
     },
+    created: function () {
+        setInterval(this.enterFrame, 1050);
+    },
     methods: {
         addMan: function () {
             //コストを払う
@@ -31,15 +34,12 @@ var app = new Vue({
         },
         robotWork: function () {
             this.counter += this.robot * 3;
+        },
+        enterFrame: function () {
+            app.manWork();
+            app.robotWork();
         }
     }
-
 });
 
 
-setInterval(enter_frame, 1050);
-
-function enter_frame() {
-    app.manWork();
-    app.robotWork();
-}
