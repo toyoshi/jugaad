@@ -21,54 +21,33 @@
     <section class="section">
         <div id="app" class="container">
             <div class="columns">
-
                 <div class="column">
                     <article class="message">
                         <div class="message-header">
-                            資源
+                            寿司
                         </div>
                         <div class="message-body">
-                            <span id="counter">{{ counter }}</span>個
-                            <span class="is-size-7">（自動生産量:{{ man + robot * 3 }} / 秒）</span><br>
-                            <button @click="counter++" class="button is-large is-fullwidth">資源を採掘</button>
-                        </div>
-                    </article>
-                </div>
-
-                <div class="column">
-                    <article class="message">
-                        <div class="message-header">
-                            採掘自動化機械
-                        </div>
-                        <div class="message-body">
-                            <span class="count">{{ man }}</span>台 &nbsp; 必要資源:
-                            <span>{{ man_cost }}</span>
-                            &nbsp;
-                            <button class="button" @click="addMan" v-bind:disabled="counter < man_cost">機械を作る</button>
-                            <p class="has-text-grey-light is-size-7">
-                                1秒に1つの資源を自動で採掘します。
-                            </p>
+                            <span id="counter">{{ counter }}</span>貫
+                            <button @click="counter++" class="button is-large is-fullwidth">握る</button>
                         </div>
                     </article>
 
-                    <article class="message">
-                        <div class="message-header">
-                            採掘ロボット
-                        </div>
-                        <div class="message-body">
-                            <span class="count">{{ robot }}</span>人 &nbsp; 必要資源:
-                            <span>{{ robot_cost }}</span>
-                            &nbsp;
-                            <button class="button" @click="addRobot" v-bind:disabled="counter < robot_cost">ロボットを作る</button>
-                            <p class="has-text-grey-light is-size-7">
-                                1秒に3つの資源を自動で採掘します。
-                            </p </div>
-                    </article>
+                    <div>
+                        現在の数をシェア
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" style="line-height: 0px" class="twitter-share-button" v-bind:data-text="counter + '個の寿司を握りました。'"
+                            data-via="toyoshi" data-show-count="false">Tweet</a>
                     </div>
                 </div>
+
+                <div class="column">
+                    <item-component v-for="item in item_list" v-bind:name="item.name" v-bind:init_cost="item.cost" v-bind:performance="item.performance"
+                        v-bind:counter="counter" v-on:change-total-qty="changeTotalQty"></item-component>
+                </div>
             </div>
+        </div>
     </section>
 
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="./main.js"></script>
 </body>
