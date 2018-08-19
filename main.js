@@ -42,7 +42,7 @@ Vue.component('item-component', {
             this.decSushi(this.cost);
             
             //コストをあげる
-            this.cost = Math.floor(this.cost * 1.1);
+            this.cost = Math.floor(this.cost * 1.2);
             
             //カウントを増やす
             this.qty++;
