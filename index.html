@@ -10,7 +10,7 @@
             font-weight: bold;
         }
 
-        #man {
+        .count {
             font-size: 2em;
             font-weight: bold;
         }
@@ -28,7 +28,8 @@
                             資源
                         </div>
                         <div class="message-body">
-                            <span id="counter">{{ counter }}</span>個<br>
+                            <span id="counter">{{ counter }}</span>個
+                            <span class="is-size-7">（自動生産量:{{ man + robot * 3 }} / 秒）</span><br>
                             <button @click="counter++" class="button is-large is-fullwidth">資源を採掘</button>
                         </div>
                     </article>
@@ -37,18 +38,35 @@
                 <div class="column">
                     <article class="message">
                         <div class="message-header">
-                            採掘の自動化
+                            採掘自動化機械
                         </div>
                         <div class="message-body">
-                            <span id="man">{{ man }}</span>人 &nbsp; 必要資源:
+                            <span class="count">{{ man }}</span>台 &nbsp; 必要資源:
                             <span>{{ man_cost }}</span>
                             &nbsp;
                             <button class="button" @click="addMan" v-bind:disabled="counter < man_cost">機械を作る</button>
+                            <p class="has-text-grey-light is-size-7">
+                                1秒に1つの資源を自動で採掘します。
+                            </p>
                         </div>
                     </article>
+
+                    <article class="message">
+                        <div class="message-header">
+                            採掘ロボット
+                        </div>
+                        <div class="message-body">
+                            <span class="count">{{ robot }}</span>人 &nbsp; 必要資源:
+                            <span>{{ robot_cost }}</span>
+                            &nbsp;
+                            <button class="button" @click="addRobot" v-bind:disabled="counter < robot_cost">ロボットを作る</button>
+                            <p class="has-text-grey-light is-size-7">
+                                1秒に3つの資源を自動で採掘します。
+                            </p </div>
+                    </article>
+                    </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
