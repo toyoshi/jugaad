@@ -40,8 +40,8 @@
                 </div>
 
                 <div class="column">
-                    <item-component v-for="item in item_list" v-bind:name="item.name" v-bind:init_cost="item.cost" v-bind:performance="item.performance"
-                        v-bind:counter="counter" v-on:change-total-qty="changeTotalQty"></item-component>
+                    <item-component v-for="item in unlocked_items" :key="item.id" v-bind:id="item.id" v-bind:name="item.name" v-bind:init_cost="item.cost" v-bind:performance="item.performance"
+                        v-bind:counter="counter" v-on:change-total-qty="changeTotalQty" v-on:unlock-next-building="unLockNetxBuilding"></item-component>
                 </div>
             </div>
         </div>

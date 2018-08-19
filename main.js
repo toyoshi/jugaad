@@ -14,7 +14,7 @@ Vue.component('item-component', {
     </div>
 </article>
     `,
-    props: ['name', 'init_cost', 'performance', 'counter'],
+    props: ['id', 'name', 'init_cost', 'performance', 'counter'],
     data: function() {
         return {
           qty: 0,
@@ -23,6 +23,18 @@ Vue.component('item-component', {
     },
     created: function() {
         setInterval(this.produce, this.performance[1]);
+    },
+    watch: {
+        qty: {
+            handler: function(newVal, oldVal){
+                if(oldVal == 4 && newVal == 5){
+                    if(this.id != 15){
+                        //次の施設をアンロック
+                        this.$emit('unlock-next-building');
+                    }
+                }
+            }
+        }
     },
     methods: {
         addItem: function () {
@@ -51,12 +63,11 @@ var app = new Vue({
     el: '#app',
     data: {
         counter: 0,
-        man: 0,
-        man_cost: 10,
-        robot: 0,
-        robot_cost: 30,
-        item_list: [
+        unlocked_items: [
+            {id: 0, name: 'デバッグ', cost: 1, performance: [1,1000] },
             {id: 1, name: '見習い職人', cost: 15, performance: [1,10000] },
+        ],
+        locked_items: [
             {id: 2, name: 'かっぱ', cost: 100, performance: [1, 1000] },
             {id: 3, name: '農場', cost: 1100, performance: [8, 1000] },
             {id: 4, name: '鉱山', cost: 12000, performance: [47, 1000] },
@@ -73,40 +84,12 @@ var app = new Vue({
             {id: 15, name: 'チャンスメーカー', cost: 26000000000000000, performance: [21000000000, 1000] },
         ]
     },
-    created: function () {
-        setInterval(this.enterFrame, 1050);
-    },
     methods: {
+        unLockNetxBuilding: function(id) {
+            this.unlocked_items.push(this.locked_items.shift(0)); 盲目的に次の施設をアンロックすることにする
+        },
         changeTotalQty: function(qty) {
             this.counter = this.counter + qty;
-        },
-        addMan: function () {
-            //コストを払う
-            this.counter -= this.man_cost;
-            //コストをあげる
-            this.man_cost = Math.floor(this.man_cost * 1.3);
-
-            //カウントを増やす
-            this.man++;
-        },
-        addRobot: function () {
-            //コストを払う
-            this.counter -= this.robot_cost;
-            //コストをあげる
-            this.robot_cost = Math.floor(this.robot_cost * 1.3);
-
-            //カウントを増やす
-            this.robot++;
-        },
-        manWork: function () {
-            this.counter += this.man;
-        },
-        robotWork: function () {
-            this.counter += this.robot * 3;
-        },
-        enterFrame: function () {
-            app.manWork();
-            app.robotWork();
         }
     }
 });
