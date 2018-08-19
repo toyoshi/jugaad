@@ -56,8 +56,21 @@ var app = new Vue({
         robot: 0,
         robot_cost: 30,
         item_list: [
-            {id: 1, name: 'Machine(しゃり握り機)', cost: 3, performance: [1,10000] },
-            {id: 2, name: 'Kappa(かっぱ)', cost: 100, performance: [1, 1000] }
+            {id: 1, name: '見習い職人', cost: 15, performance: [1,10000] },
+            {id: 2, name: 'かっぱ', cost: 100, performance: [1, 1000] },
+            {id: 3, name: '農場', cost: 1100, performance: [8, 1000] },
+            {id: 4, name: '鉱山', cost: 12000, performance: [47, 1000] },
+            {id: 5, name: '工場', cost: 130000, performance: [260, 1000] },
+            {id: 6, name: '銀行', cost: 1400000, performance: [1400, 1000] },
+            {id: 7, name: '寺院', cost: 20000000, performance: [7800, 1000] },
+            {id: 8, name: '魔法使いの塔', cost: 330000000, performance: [44000, 1000] },
+            {id: 9, name: '宇宙船', cost: 5100000000, performance: [260000, 1000] },
+            {id: 10, name: '錬金術', cost: 75000000000, performance: [1600000, 1000] },
+            {id: 11, name: 'ポータル', cost: 1000000000000, performance: [10000000, 1000] },
+            {id: 12, name: 'タイムマシン', cost: 14000000000000, performance: [65000000, 1000] },
+            {id: 13, name: '反物質凝縮器', cost: 170000000000000, performance: [43000000, 1000] },
+            {id: 14, name: 'プリズム', cost: 2100000000000000, performance: [2900000000, 1000] },
+            {id: 15, name: 'チャンスメーカー', cost: 26000000000000000, performance: [21000000000, 1000] },
         ]
     },
     created: function () {
