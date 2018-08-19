@@ -87,7 +87,7 @@ var app = new Vue({
     },
     methods: {
         unLockNetxBuilding: function(id) {
-            this.unlocked_items.push(this.locked_items.shift(0)); 盲目的に次の施設をアンロックすることにする
+            this.unlocked_items.push(this.locked_items.shift(0)); //盲目的に次の施設をアンロックすることにする
         },
         changeTotalQty: function(qty) {
             this.counter = this.counter + qty;
