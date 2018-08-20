@@ -64,7 +64,7 @@ var app = new Vue({
     data: {
         counter: 0,
         unlocked_items: [
-            {id: 0, name: 'デバッグ', icon: '⚙', cost: 1, performance: [1,1000] },
+            //{id: 0, name: 'デバッグ', icon: '⚙', cost: 1, performance: [1,1000] },
             { id: 1, name: '見習い職人', icon: '👶', cost: 15, performance: [1, 10000] },
         ],
         locked_items: [
