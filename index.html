@@ -32,7 +32,6 @@
                             <button @click="counter++" class="button is-large is-fullwidth">握る</button>
                         </div>
                     </article>
-
                     <div>
                         現在の数をシェア
 
@@ -42,10 +41,8 @@
                             </span>
                             <span>Twitter</span>
                         </a>
-
                     </div>
                 </div>
-
                 <div class="column">
                     <item-component v-for="item in unlocked_items" :key="item.id" v-bind:id="item.id" v-bind:name="item.name" v-bind:init_cost="item.cost"
                         v-bind:performance="item.performance" v-bind:counter="counter" v-on:change-total-qty="changeTotalQty"
