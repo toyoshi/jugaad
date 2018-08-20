@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>🍣クリッカー</title>
     <style>
+        body {
+            word-break: break-all;
+        }
+
         #counter {
             font-size: 5em;
             font-weight: bold;
@@ -22,7 +26,7 @@
     <section class="section">
         <div id="app" class="container">
             <div class="columns">
-                <div class="column">
+                <div class="column is-half">
                     <article class="message">
                         <div class="message-header">
                             寿司
@@ -43,9 +47,9 @@
                         </a>
                     </div>
                 </div>
-                <div class="column">
+                <div class="column is-half">
                     <item-component v-for="item in unlocked_items" :key="item.id" v-bind:id="item.id" v-bind:name="item.name" v-bind:init_cost="item.cost"
-                        v-bind:performance="item.performance" v-bind:counter="counter" v-on:change-total-qty="changeTotalQty"
+                        v-bind:performance="item.performance" v-bind:icon="item.icon" v-bind:counter="counter" v-on:change-total-qty="changeTotalQty"
                         v-on:unlock-next-building="unLockNetxBuilding"></item-component>
                 </div>
             </div>
